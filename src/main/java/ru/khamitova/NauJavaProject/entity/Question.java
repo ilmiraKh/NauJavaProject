@@ -1,23 +1,33 @@
 package ru.khamitova.NauJavaProject.entity;
 
+import jakarta.persistence.*;
 import ru.khamitova.NauJavaProject.entity.enums.QuestionType;
 
-import java.util.Map;
-
+@Entity
+@Table(name = "questions")
 public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String text;
-    private Integer points;
+    @Column(length = 20, nullable = false)
+    @Enumerated(EnumType.STRING)
     private QuestionType type;
-    private Map<String, Boolean> answers;
-    // в задании сказано реализовать только 1 сущность, поэтому пока ответы храню так
-
-    public Long getId() {
-        return id;
-    }
+    @Column(nullable = false)
+    private Integer points;
+    @Column(name = "order_index")
+    private Integer orderIndex;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "test_id", nullable = false)
+    private Test test;
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getText() {
@@ -28,14 +38,6 @@ public class Question {
         this.text = text;
     }
 
-    public Integer getPoints() {
-        return points;
-    }
-
-    public void setPoints(Integer points) {
-        this.points = points;
-    }
-
     public QuestionType getType() {
         return type;
     }
@@ -44,11 +46,27 @@ public class Question {
         this.type = type;
     }
 
-    public Map<String, Boolean> getAnswers() {
-        return answers;
+    public Integer getPoints() {
+        return points;
     }
 
-    public void setAnswers(Map<String, Boolean> answers) {
-        this.answers = answers;
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
+    public Integer getOrderIndex() {
+        return orderIndex;
+    }
+
+    public void setOrderIndex(Integer orderIndex) {
+        this.orderIndex = orderIndex;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 }
