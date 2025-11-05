@@ -38,7 +38,7 @@ public class TestRepositoryTest {
     @BeforeEach
     void setUp() {
         User user = new User();
-        user.setUsername("teacher");
+        user.setLogin("teacher");
         user.setEmail("olga1967@gmail.com");
         user.setPassword("1234");
         user.setRole(Role.TEACHER);

@@ -46,7 +46,7 @@ public class ResultRepositoryTest {
     @BeforeEach
     void setUp() {
         user = new User();
-        user.setUsername("ivan");
+        user.setLogin("ivan");
         user.setEmail("ivanchik@gmail.com");
         user.setPassword("1234");
         user.setRole(Role.STUDENT);
@@ -103,7 +103,7 @@ public class ResultRepositoryTest {
 
     private User createAnotherUser(){
         User anotherUser = new User();
-        anotherUser.setUsername("mike");
+        anotherUser.setLogin("mike");
         anotherUser.setEmail("mike@example.com");
         anotherUser.setPassword("5678");
         anotherUser.setRole(Role.STUDENT);
